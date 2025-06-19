@@ -5,7 +5,7 @@ const MongoProductRepository = require('./infraestructure/repositories/MongoProd
 const MySQLProductRepository = require('./infraestructure/repositories/MySQLProductRepository');
 const ProductController = require('./adapters/controllers/ProductController');
 const productRoutes = require('./adapters/routes/productRoutes');
-const { verifyToken } = require('./adapters/middlewares/authJwt');
+const { verifyToken, isAdmin } = require('./adapters/middlewares/authJwt');
 const swaggerUI = require('swagger-ui-express');
 const swaggerSpec = require('./infraestructure/docs/swaggerConfig');
 const MongoUserRepository     = require('./infraestructure/repositories/MongoUserRepository');
@@ -45,7 +45,7 @@ const productController = new ProductController(productRepository);
 // Configuración de Swagger UI
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 // Routes
-app.use('/api/v1/products', verifyToken, productRoutes(productController));
+app.use('/api/v1/products', verifyToken, isAdmin, productRoutes(productController));
 
 // Error Handling
 app.use((err, req, res, next) => {
