@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { isAdmin } = require('../middlewares/authJwt');
 
 module.exports = (productController) => {
   /**
@@ -63,7 +64,7 @@ module.exports = (productController) => {
    *         description: No autorizado
    */
 
-  router.post('/', (req, res) => productController.create(req, res));
-
+  //router.post('/', (req, res) => productController.create(req, res));
+  router.post('/', isAdmin, (req, res) => productController.create(req, res));
   return router;
 };

@@ -24,4 +24,11 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-module.exports = { verifyToken };
+const isAdmin = (req, res, next) => {
+  if (req.userRoles && req.userRoles.includes('admin')) {
+    return next();
+  }
+  return res.status(403).json({ message: 'Requiere Admin Role!' });
+};
+
+module.exports = { verifyToken , isAdmin };
