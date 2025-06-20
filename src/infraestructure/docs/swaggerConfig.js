@@ -96,7 +96,40 @@ const options = {
               description: 'JWT token de autenticación'
             }
           }
-        }
+        },
+        Order: {
+          type: 'object',
+          required: ['product', 'price'],
+          properties: {
+            Product: { 
+              type: 'string',
+              description: 'Nombre del producto'
+            },
+            price: { 
+              type: 'number',
+              description: 'Precio del producto'
+            },
+            
+          },
+        },
+        Cupons: {
+          type: 'object',
+          required: ['code', 'discount', 'expiresAt'],
+          properties: {
+            code: { 
+              type: 'string',
+              description: 'Codigo del producto'
+            },
+            discount: { 
+              type: 'number',
+              description: 'Descuento del producto'
+            },
+            expiresAt: { 
+              type: 'date',
+              description: 'fecha'
+            },
+          },
+        },
       },
     },
   },

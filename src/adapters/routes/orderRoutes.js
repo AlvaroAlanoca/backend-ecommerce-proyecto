@@ -1,7 +1,4 @@
 
-js
-Copiar
-Editar
 const express = require('express');
 const router = express.Router();
 
@@ -19,19 +16,7 @@ module.exports = (orderController) => {
    *       content:
    *         application/json:
    *           schema:
-   *             type: object
-   *             properties:
-   *               products:
-   *                 type: array
-   *                 items:
-   *                   type: object
-   *                   properties:
-   *                     productId:
-   *                       type: string
-   *                     quantity:
-   *                       type: number
-   *               total:
-   *                 type: number
+   *             $ref: '#/components/schemas/Order'
    *     responses:
    *       201:
    *         description: Orden creada

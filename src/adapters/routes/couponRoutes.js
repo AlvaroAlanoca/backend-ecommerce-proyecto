@@ -1,17 +1,14 @@
 
-js
-Copiar
-Editar
 const express = require('express');
 const router = express.Router();
 
-module.exports = (orderController) => {
+module.exports = (couponController) => {
   /**
    * @swagger
-   * /api/v1/orders:
+   * /api/v1/cupons:
    *   post:
    *     summary: Crea una nueva orden
-   *     tags: [Orders]
+   *     tags: [Cupons]
    *     security:
    *       - BearerAuth: []
    *     requestBody:
@@ -19,24 +16,12 @@ module.exports = (orderController) => {
    *       content:
    *         application/json:
    *           schema:
-   *             type: object
-   *             properties:
-   *               products:
-   *                 type: array
-   *                 items:
-   *                   type: object
-   *                   properties:
-   *                     productId:
-   *                       type: string
-   *                     quantity:
-   *                       type: number
-   *               total:
-   *                 type: number
+   *             $ref: '#/components/schemas/Cupons'
    *     responses:
    *       201:
    *         description: Orden creada
    */
-  router.post('/', (req, res) => orderController.create(req, res));
-
+  //router.post('/', (req, res) => orderController.create(req, res));
+  router.post('/', (req, res) => couponController.create(req, res));
   return router;
 };
